@@ -83,7 +83,7 @@ function startStreaming() {
 // Array to store streamed tweets
 var queue = [];
 
-// Post 6 random Tweets every 5 minutes
+// Post 5 random Tweets every 5 minutes
 setInterval(function() {
   console.log(queue);
   // Loop through queue to randomly select 5 Tweets
