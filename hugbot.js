@@ -70,7 +70,7 @@ function startStreaming() {
         } else {
 
           var pugsParams = {
-            status: '@' + tweet.user.screen_name + ' hugs over the internet are difficult, but luckily, pugs are plentiful ' + pugPic,
+            status: '@' + tweet.user.screen_name + ' hugs over the internet can be tricky, but luckily, pugs are plentiful ' + pugPic,
             in_reply_to_status_id: tweet.id
           };
 
