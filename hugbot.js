@@ -10,7 +10,7 @@ function getRandNum() {
 }
 
 // Get a random element from an array
-function getRandIndex(array){
+function getRandIndex(array) {
   var index = Math.floor(array.length*Math.random());
   return array[index];
 }
@@ -57,9 +57,7 @@ function startStreaming() {
         if (number <= 9) {
 
           var hugsParams = {
-            // FIXME status for testing
-            status: 'HUGBOT SENDS HUGS',
-            // status: '@' + tweet.user.screen_name + ' HUGBOT SENDS HUGS',
+            status: '@' + tweet.user.screen_name + ' HUGBOT SENDS HUGS',
             in_reply_to_status_id: tweet.id
           };
 
@@ -88,8 +86,8 @@ var queue = [];
 // Post 6 random Tweets every 5 minutes
 setInterval(function() {
   console.log(queue);
-  // Loop through queue to randomly select 6 Tweets
-  for (var i = 0; i < 6; i++) {
+  // Loop through queue to randomly select 5 Tweets
+  for (var i = 0; i < 5; i++) {
     var index = Math.floor(Math.random() * queue.length);
     var sampleTweet = queue.splice(index, 1);
     console.log(i+1);
