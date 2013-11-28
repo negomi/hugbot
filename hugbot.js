@@ -39,6 +39,9 @@ var callback = function handleError(error) {
   }
 };
 
+// Array to store streamed tweets
+var queue = [];
+
 // Get a stream of Tweets
 function startStreaming() {
   bot.stream('statuses/filter', { track: 'need a hug, want a hug, need hugs, want hugs' }, function(stream) {
@@ -61,7 +64,6 @@ function startStreaming() {
             in_reply_to_status_id: tweet.id
           };
 
-          // Add params to queue
           queue.push(hugsParams);
 
         // 10% chance of pug
@@ -72,7 +74,6 @@ function startStreaming() {
             in_reply_to_status_id: tweet.id
           };
 
-          // Add params to queue
           queue.push(pugsParams);
         }
       }
@@ -80,14 +81,11 @@ function startStreaming() {
   });
 }
 
-// Array to store streamed tweets
-var queue = [];
-
-// Post 5 random Tweets every 5 minutes
+// Post 10 random Tweets every 15 minutes
 setInterval(function() {
   console.log(queue);
-  // Loop through queue to randomly select 5 Tweets
-  for (var i = 0; i < 5; i++) {
+  // Loop through queue to randomly select 10 Tweets
+  for (var i = 0; i < 10; i++) {
     var index = Math.floor(Math.random() * queue.length);
     var sampleTweet = queue.splice(index, 1);
     console.log(i+1);
@@ -95,7 +93,9 @@ setInterval(function() {
 
     bot.updateStatus(sampleTweet[0], sampleTweet[0], callback);
   }
-}, 1000*60*5);
+  // Reset the queue
+  queue = [];
+}, 1000*60*15);
 
 // Start streaming Tweets
 startStreaming();
