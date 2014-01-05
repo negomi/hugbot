@@ -86,11 +86,12 @@ setInterval(function() {
   console.log(queue);
   // Loop through queue to randomly select 10 Tweets
   for (var i = 0; i < 10; i++) {
-    var index = Math.floor(Math.random() * queue.length);
+    var index = getRandIndex(queue);
     var sampleTweet = queue.splice(index, 1);
     console.log(i+1);
     console.log(sampleTweet[0]);
 
+    // Send the Tweets
     bot.updateStatus(sampleTweet[0], sampleTweet[0], callback);
   }
   // Reset the queue
