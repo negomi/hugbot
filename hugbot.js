@@ -44,59 +44,44 @@ var queue = [];
 
 // Get a stream of Tweets
 function startStreaming() {
-  bot.stream('statuses/filter', { track: 'need a hug, want a hug, need hugs, want hugs' }, function(stream) {
+  bot.stream('statuses/filter', { track: '@hugsorpugs' }, function(stream) {
 
     console.log('Listening for Tweets...');
 
     stream.on('data', function(tweet) {
 
-      // Check Tweet for specific matching phrases as Twitter's Streaming API doesn't allow for this
-      if (tweet.text.match(/need\sa\shug|want\sa\shug|need\shugs|want\shugs/)) {
+      var number = getRandNum();
+      var pugPic = getRandPug();
 
-        var number = getRandNum();
-        var pugPic = getRandPug();
+      // 90% chance of hug
+      if (number <= 9) {
 
-        // 90% chance of hug
-        if (number <= 9) {
+        var hugsParams = {
+          status: '@' + tweet.user.screen_name + ' HUGBOT SENDS HUGS',
+          in_reply_to_status_id: tweet.id
+        };
 
-          var hugsParams = {
-            status: '@' + tweet.user.screen_name + ' HUGBOT SENDS HUGS',
-            in_reply_to_status_id: tweet.id
-          };
+        console.log(tweet.text);
 
-          queue.push(hugsParams);
+        // Tweet hug reply
+        bot.updateStatus(hugsParams, hugsParams, callback);
 
-        // 10% chance of pug
-        } else {
+      // 10% chance of pug
+      } else {
 
-          var pugsParams = {
-            status: '@' + tweet.user.screen_name + ' hugs over the internet can be tricky, but luckily, pugs are plentiful ' + pugPic,
-            in_reply_to_status_id: tweet.id
-          };
+        var pugsParams = {
+          status: '@' + tweet.user.screen_name + ' hugs over the internet can be tricky, but luckily, pugs are plentiful ' + pugPic,
+          in_reply_to_status_id: tweet.id
+        };
 
-          queue.push(pugsParams);
-        }
+        console.log(tweet.text);
+
+        // Tweet pug reply
+        bot.updateStatus(pugsParams, pugsParams, callback);
       }
     });
   });
 }
-
-// Post 10 random Tweets every 15 minutes
-setInterval(function() {
-  console.log(queue);
-  // Loop through queue to randomly select 10 Tweets
-  for (var i = 0; i < 10; i++) {
-    var index = getRandIndex(queue);
-    var sampleTweet = queue.splice(index, 1);
-    console.log(i+1);
-    console.log(sampleTweet[0]);
-
-    // Send the Tweets
-    bot.updateStatus(sampleTweet[0], sampleTweet[0], callback);
-  }
-  // Reset the queue
-  queue = [];
-}, 1000*60*15);
 
 // Start streaming Tweets
 startStreaming();
