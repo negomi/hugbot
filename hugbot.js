@@ -1,10 +1,10 @@
 var ntwitter = require('ntwitter');
 
 var bot = new ntwitter({
-  consumer_key: 'CONSUMER_KEY',
-  consumer_secret: 'CONSUMER_SECRET',
-  access_token_key: 'ACCESS_TOKEN_KEY',
-  access_token_secret: 'ACCESS_TOKEN_KEY'
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.ACCESS_TOKEN_KEY
 });
 
 // Get a random number from 1 to 10
