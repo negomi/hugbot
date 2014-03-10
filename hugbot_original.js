@@ -44,13 +44,15 @@ var queue = [];
 
 // Get a stream of Tweets
 function startStreaming() {
-  bot.stream('statuses/filter', { track: 'need a hug, want a hug, need hugs, want hugs' }, function(stream) {
+  bot.stream('statuses/filter',
+    { track: 'need a hug, want a hug, need hugs, want hugs' },
+    function(stream) {
 
     console.log('Listening for Tweets...');
 
     stream.on('data', function(tweet) {
 
-      // Check Tweet for specific matching phrases as Twitter's Streaming API doesn't allow for this
+      // Check Tweet for specific matching phrases
       if (tweet.text.match(/need\sa\shug|want\sa\shug|need\shugs|want\shugs/)) {
 
         var number = getRandNum();
@@ -70,7 +72,10 @@ function startStreaming() {
         } else {
 
           var pugsParams = {
-            status: '@' + tweet.user.screen_name + ' hugs over the internet can be tricky, but luckily, pugs are plentiful ' + pugPic,
+            status: '@' +
+                    tweet.user.screen_name +
+                    ' hugs over the internet can be tricky, but luckily, pugs are plentiful ' +
+                    pugPic,
             in_reply_to_status_id: tweet.id
           };
 
