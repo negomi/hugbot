@@ -1,7 +1,5 @@
 hugbot
 =============
-A Node.js Twitter bot that sends people hugs and occasionally pugs.
-
-Uses the Twitter Streaming API with [ntwitter](https://github.com/AvianFlu/ntwitter).
+A Node.js Twitter bot that sends hugs and occasionally pugs.
 
 [@hugsorpugs](https://twitter.com/hugsorpugs)

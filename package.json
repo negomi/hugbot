@@ -1,10 +1,10 @@
 {
   "name": "hugbot",
-  "version": "0.0.0",
-  "description": "A Twitter bot that sends you hugs and occasionally pugs",
+  "version": "0.0.1",
+  "description": "A Twitter bot that sends hugs and occasionally pugs",
   "main": "hugbot.js",
   "dependencies": {
-    "ntwitter": "~0.5.0"
+    "twode": "0.0.3"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,7 +15,10 @@
     "url": "git://github.com/negomi/hugbot.git"
   },
   "keywords": [
-    "hugbot"
+    "bot",
+    "hugbot",
+    "hugs",
+    "twitter"
   ],
   "author": "negomi",
   "license": "none",
@@ -23,6 +26,6 @@
     "url": "https://github.com/negomi/hugbot/issues"
   },
   "engines": {
-    "node": "0.10.15"
+    "node": "5.2.0"
   }
 }
