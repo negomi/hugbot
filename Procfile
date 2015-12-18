@@ -1,1 +1,1 @@
-web: node hugbot.js
+worker: node hugbot.js
