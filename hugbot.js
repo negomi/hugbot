@@ -1,10 +1,10 @@
 var twitter = require('twode');
-var auth = require('./auth');
 
-// Add API keys to process.env.
-for (var key in auth) {
-  process.env[key] = auth[key];
-}
+// Set API keys for dev environment.
+// var auth = require('./auth');
+// for (var key in auth) {
+//   process.env[key] = auth[key];
+// }
 
 function Bot(handle) {
   this.handle = handle;
