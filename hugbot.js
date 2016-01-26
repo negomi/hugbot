@@ -1,13 +1,7 @@
 var twitter = require('twode');
 
-// Set API keys for dev environment.
-// var auth = require('./auth');
-// for (var key in auth) {
-//   process.env[key] = auth[key];
-// }
-
 function Bot(handle) {
-  this.handle = handle;
+  this.handle = handle.charAt(0) === '@' ? handle : '@' + handle;
   this.twitter = new twitter({
     consumer_key: process.env.CONSUMER_KEY,
     consumer_secret: process.env.CONSUMER_SECRET,
@@ -55,7 +49,7 @@ Bot.prototype.getResponse = function(userHandle) {
 Bot.prototype.run = function() {
   var bot = this;
 
-  this.twitter.stream('statuses/filter', { track: '@' + this.handle }, function(stream) {
+  this.twitter.stream('statuses/filter', { track: this.handle }, function(stream) {
 
     console.log('Listening for Tweets...');
 
